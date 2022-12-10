@@ -21,6 +21,13 @@ destination_dir = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Deus Ex\\R
 for i in range(17280):
     print("Script is running through the for loop to copy save games.")
     source_dir_list = os.listdir(source_dir)
+    #sort the source_dir_list by the creation time of the folders
+    source_dir_list.sort(key=lambda x: os.path.getctime(os.path.join(source_dir, x)))
+
+    #If the destination_dir is empty, then copy the contents of the most recently created folder in the source_dir_list into the destination_dir
+    if not os.listdir(destination_dir):
+        print("Destination directory is empty. Copying contents of most recently created folder in source directory to destination directory.")
+        shutil.copytree(os.path.join(source_dir, source_dir_list[-1]), destination_dir, dirs_exist_ok=True)
 
     for folder in source_dir_list:    
         if os.path.getctime(os.path.join(source_dir, folder)) > time.time() - 5:
