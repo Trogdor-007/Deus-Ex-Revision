@@ -29,5 +29,5 @@ for i in range(17280):
             shutil.copytree(os.path.join(source_dir, folder), destination_dir, dirs_exist_ok=True)
     
     #print script is sleeping for 5 seconds
-    print("Sleeping for ${sleep_time_in_seconds} seconds")
+    print(f"Sleeping for {sleep_time_in_seconds} seconds")
     time.sleep(sleep_time_in_seconds)
